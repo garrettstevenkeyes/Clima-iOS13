@@ -23,6 +23,10 @@ struct WeatherManager {
         performRequest(with: urlString)
     }
     
+    func fetchWeather(latitude: CLLocationDegrees,Longitude: CLLocationDegrees) {
+        let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)"
+    }
+    
     func performRequest(with urlString:String){
         // Create a URL
         if let url = URL(string: urlString){
@@ -57,7 +61,7 @@ struct WeatherManager {
             let weather = WeatherModel(conditionId: id, cityName: name, temperature: temp)
             return weather
         } catch {
-            delegate?.didFailWithError(error: error!)
+            delegate?.didFailWithError(error: error)
             return nil
         }
         
